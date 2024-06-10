@@ -34,9 +34,14 @@ Before getting into this, I want to summarize how our data is split among the fi
 
       You will take 5 chronological files and put them in Entire_Input and put the following 6th file in the Entire_Target. In my case, I manually repeated this process until I had 1000 files in Entire_Input and 200 files in Entire_Target
       This is because my model looks at the first 5 files and tries to predict the 6th file's data values. We will need several sets like this to properly train with.
+  
+      
       For example, files (1-5) [6] (7-11) [12] (13-17) [18]...
+      
       () = Entire_Input
+      
       [] = Entire_Target
+      
 
       For Testing_Input and Testing_Target you will only do a single set. So 5 chronological files will go in Testing_Input and the 6th file will go in the Testing_Target. This is so we can test our model later on.
 
