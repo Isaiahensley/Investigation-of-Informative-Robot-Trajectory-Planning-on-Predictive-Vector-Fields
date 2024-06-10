@@ -23,9 +23,8 @@ students will train a deep transformer neural network for learning water flow dy
 
 
 -------------------------------
-**Instructions**
-
 **DataLoaderCSV.py**
+
 Before getting into this, I want to summarize how our data is split among the files briefly. Each .nc file has 900 rows of data when laid out in a .csv file, each representing data taken at a different location. There is a file for data taken every 6 hours spanning 11 months. In total this leaves us with 1337 files.
 1) First you need to create 4 folders of .nc files
    1) Entire_Input
@@ -41,7 +40,9 @@ Before getting into this, I want to summarize how our data is split among the fi
 
       For Testing_Input and Testing_Target you will only do a single set. So 5 chronological files will go in Testing_Input and the 6th file will go in the Testing_Target. This is so we can test our model later on.
 
+--------------------------------
 **NewReorganize.py**
+
 This will reorganize the Entire_Input.csv file for training. Above I mentioned that it looks at the first 5 files and predicts the 6th file. However, it is a bit more complicated than this. 
 In each file there are 900 rows of data. My model will look at the first 5 rows in Entire_Input and predict the 1st row in Entire_Target, then look at rows 6-10 in Entire_Input and predict the 2nd row in Entire_Target. In order to "look at the first 5 files and predict the 6th file" we need it to do the following:
 
@@ -64,18 +65,25 @@ After doing this we will be left with all 900 rows of the predictions for the 6t
 While training it will do this all over again with new data while training if you give it more sequences.
 Note that ONLY Entire_Input and Testing_Input needs to be reorganized
 
+--------------------------------
 **Transformer.py**
+
 This file trains the model as briefly described above AND runs a test with the testing folders which creates a predictions.csv
 The predictions.csv is then used to compare the predictions and actual values in Temperature.py, Salt.py, and Velocity.py
 
 Here you will use the 2 .csv files as shown. This will train the model with inputs and targets.
+
 ![image](https://github.com/Isaiahensley/Investigation-of-Informative-Robot-Trajectory-Planning-on-Predictive-Vector-Fields/assets/143129356/1228c0d3-18a3-4b38-baa0-c083a05915fc)
 
 Here you will put the New_Testing_Input.csv file as shown and this test will output a predictions.csv
+
 ![image](https://github.com/Isaiahensley/Investigation-of-Informative-Robot-Trajectory-Planning-on-Predictive-Vector-Fields/assets/143129356/80a9a898-f05f-4e3b-9ca3-348e02f8e375)
 
+--------------------------------
 **Temperature.py, Salt.py, Velocity.py**
+
 All of these files work similarly. 
 
 At the top, you will need to include the predictions.csv that you have from running the model file and the Testing_Target.csv so we can compare them to the actual values.
+
 ![image](https://github.com/Isaiahensley/Investigation-of-Informative-Robot-Trajectory-Planning-on-Predictive-Vector-Fields/assets/143129356/18d2478f-76e1-4811-b0d0-8ed9d9ec5a46)
