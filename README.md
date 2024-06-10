@@ -52,20 +52,36 @@ This will reorganize the Entire_Input.csv file for training. Above I mentioned t
 In each file there are 900 rows of data. My model will look at the first 5 rows in Entire_Input and predict the 1st row in Entire_Target, then look at rows 6-10 in Entire_Input and predict the 2nd row in Entire_Target. In order to "look at the first 5 files and predict the 6th file" we need it to do the following:
 
 look at first row of file 1 (row 1 Entire_Input)
+
 look at first row of file 2 (row 2 Entire_Input)
+
 look at first row of file 3 (row 3 Entire_Input)
+
 look at first row of file 4 (row 4 Entire_Input)
+
 look at first row of file 5 (row 5 Entire_Input)
+
 predict the first row of file 6 (row 1 Entire_Target)
 
+
+then...
+
+
 look at second row of file 1 (row 6 Entire_Input)
+
 look at second row of file 2 (row 7 Entire_Input)
+
 look at second row of file 3 (row 8 Entire_Input)
+
 look at second row of file 4 (row 9 Entire_Input)
+
 look at second row of file 5 (row 10 Entire_Input)
+
 predict the second row of file 6 (row 2 Entire_Target)
 
+
 ... so on until it does this 900 times
+
 After doing this we will be left with all 900 rows of the predictions for the 6th file in that sequence trained from 5 files (4500 rows).
 While training it will do this all over again with new data while training if you give it more sequences.
 Note that ONLY Entire_Input and Testing_Input needs to be reorganized
